@@ -54,6 +54,17 @@ class App extends React.Component {
     }
   }
 
+
+
+  
+render(){
+    const listaMensagem = this.state.mensagens.map((mensagem)=>{
+      return(
+        <div> 
+          <p><strong>{mensagem.nomeUsuario}:</strong> {mensagem.mensagemUsuario}</p>
+
+
+=======
   // apagarMensagem = () =>{
   //   console.log('Apagar mensagem')
   // }
@@ -65,6 +76,7 @@ class App extends React.Component {
       return (
         <div id={mensagem.idMensagem} >
           <p><strong>{mensagem.nomeUsuario}:</strong> {mensagem.mensagemUsuario} {mensagem.idMensagem}</p>
+
 
         </div>
       )
@@ -89,7 +101,7 @@ class App extends React.Component {
             value = {this.state.inputMensagemUsuario}
           />
 
-          <button onClick={this.adicionarMensagem}>Enviar</button>
+          <button  onClick={this.adicionarMensagem}>Enviar</button>
         </div>
 
 
