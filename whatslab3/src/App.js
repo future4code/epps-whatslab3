@@ -6,45 +6,54 @@ import userEvent from '@testing-library/user-event';
 
 
 class App extends React.Component {
-  
+
   state = {
     mensagens: [],
     inputNomeUsuario: "",
-    InputMensagemUsuario:"",
+    InputMensagemUsuario: "",
+    idMensagem: 0,
   }
-  onChangeInputUsuario = event =>{
-    this.setState({inputNomeUsuario: event.target.value})
+  onChangeInputUsuario = event => {
+    this.setState({ inputNomeUsuario: event.target.value })
     console.log(event.target.value);
   }
 
-  onChangeMensagem = event =>{
-    this.setState({inputMensagemUsuario: event.target.value})
+  onChangeMensagem = event => {
+    this.setState({ inputMensagemUsuario: event.target.value })
     console.log(event.target.value);
   }
-  
-   adicionarMensagem=()=>{
+
+  adicionarMensagem = () => {
     const novaMensagem = {
       nomeUsuario: this.state.inputNomeUsuario,
       mensagemUsuario: this.state.inputMensagemUsuario
-      
+
     }
 
     const MensagemNova = [...this.state.mensagens, novaMensagem]
     this.setState({
       mensagens: MensagemNova,
-        })
-        console.log(this.state.mensagens);
+    })
+    console.log(this.state.mensagens);
 
-  
 
+    //   const mensagemId = this.state.idMensagem
+    //   mensagemId +=1
+    //   this.setState({idMensagem: mensagemId})
+    this.limpar()
   }
 
-  onKeyDownInput = event =>{
-    if(event.key === "Enter"){
+  limpar = () =>{
+    this.setState({inputMensagemUsuario:"", inputNomeUsuario:''})
+  }
+
+  onKeyDownInput = event => {
+    if (event.key === "Enter") {
       console.log(`tecla: ${event.key}`);
       this.adicionarMensagem()
     }
   }
+
 
 
   
@@ -54,26 +63,42 @@ render(){
         <div> 
           <p><strong>{mensagem.nomeUsuario}:</strong> {mensagem.mensagemUsuario}</p>
 
-    
+
+=======
+  // apagarMensagem = () =>{
+  //   console.log('Apagar mensagem')
+  // }
+
+
+
+  render() {
+    const listaMensagem = this.state.mensagens.map((mensagem) => {
+      return (
+        <div id={mensagem.idMensagem} >
+          <p><strong>{mensagem.nomeUsuario}:</strong> {mensagem.mensagemUsuario} {mensagem.idMensagem}</p>
+
+
         </div>
       )
     })
-      
+
     return (
       <div onKeyDown={this.onKeyDownInput} className="Pai">
-        <div className= "quadrado">
+        <div className="quadrado">
           <div className="containerMensagem">{listaMensagem}</div>
 
         </div>
-        <div className= "inputs">
+        <div className="inputs">
           <input className="Usuario"
-          placeholder="Usuario"
+            placeholder="Usuario"
+            value = {this.state.inputNomeUsuario}
 
-          onChange={this.onChangeInputUsuario}
+            onChange={this.onChangeInputUsuario}
           />
-           <input className="Mensagem"
-          placeholder="mensagem"
-          onChange={this.onChangeMensagem}
+          <input className="Mensagem"
+            placeholder="mensagem"
+            onChange={this.onChangeMensagem}
+            value = {this.state.inputMensagemUsuario}
           />
 
           <button  onClick={this.adicionarMensagem}>Enviar</button>
@@ -83,8 +108,7 @@ render(){
       </div>
     );
   }
-  
-  
+
 }
 
 export default App;
