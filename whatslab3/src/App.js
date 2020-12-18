@@ -2,16 +2,19 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+
+
+
 class App extends React.Component {
   
   state = {
-    mensagens = [
+    mensagens: [
       {
       nomeUsuario:"",
       mensagemUsuario:""
     }],
-    inputNomeUsuario ='',
-    inputMensagemUsuario =''
+    inputNomeUsuario :'',
+    inputMensagemUsuario :''
   }
 
   adicionarMensagem(){
@@ -23,25 +26,36 @@ class App extends React.Component {
     const mensagensNovas = this.state.mensagens
     mensagensNovas.push(novaMensagem)
 
-    this.setState({mensagens = mensagensNovas})
+    this.setState({mensagens : mensagensNovas})
 
   }
 
   
   
   render(){
-    const ImprimeMensagemNaTela = this.state.mensagens.map((mensagem) =>{
-      return <div>
-        {mensagem.nomeUsuario}
-        {mensagem.mensagemUsuario}
-      </div>      
-    })
-    return (
-      <div className="App">
-        <button onClick={this.adicionarMensagem}></button>
+     const adicionarMensagem =() =>
+    
+     return (
+      <div className="Pai">
+        <div className= "quadrado">
+
+        </div>
+        <div className= "inputs">
+          <input className="nome"
+          placeholder="nome"
+          />
+           <input className="Mensagem"
+          placeholder="mensagem"
+          />
+
+          <button onClick="">Enviar</button>
+        </div>
+
+
       </div>
     );
   }
+  
   
 }
 
