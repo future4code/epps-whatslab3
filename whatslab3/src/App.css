@@ -10,8 +10,6 @@
   border: black solid 1px;
   height: 100%;
   display: flex;
-  justify-content: center;
-  align-content: center;
   width: 500px;
   margin: auto;
 }
@@ -20,4 +18,12 @@
   display: flex;
   justify-content: center;
   align-content: center;
+}
+
+.containerMensagem{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin:5px;
 }
