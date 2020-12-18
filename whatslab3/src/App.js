@@ -29,10 +29,6 @@ class App extends React.Component {
       
     }
 
-    
-      
-
-
     const MensagemNova = [...this.state.mensagens, novaMensagem]
     this.setState({
       mensagens: MensagemNova,
@@ -49,14 +45,16 @@ class App extends React.Component {
       this.adicionarMensagem()
     }
   }
+
+
   
-  
-  
-  render(){
+render(){
     const listaMensagem = this.state.mensagens.map((mensagem)=>{
       return(
         <div> 
           <p><strong>{mensagem.nomeUsuario}:</strong> {mensagem.mensagemUsuario}</p>
+
+    
         </div>
       )
     })
@@ -78,7 +76,7 @@ class App extends React.Component {
           onChange={this.onChangeMensagem}
           />
 
-          <button onClick={this.adicionarMensagem}>Enviar</button>
+          <button  onClick={this.adicionarMensagem}>Enviar</button>
         </div>
 
 
