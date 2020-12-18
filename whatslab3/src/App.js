@@ -36,15 +36,16 @@ class App extends React.Component {
     })
     console.log(this.state.mensagens);
 
-
-    //   const mensagemId = this.state.idMensagem
-    //   mensagemId +=1
-    //   this.setState({idMensagem: mensagemId})
+  
+    // const id = this.state.idMensagem
+    // id +=1
+    // console.log(id)
+    // this.setState({ idMensagem: mensagemId })
     this.limpar()
   }
 
-  limpar = () =>{
-    this.setState({inputMensagemUsuario:"", inputNomeUsuario:''})
+  limpar = () => {
+    this.setState({ inputMensagemUsuario: "", inputNomeUsuario: '' })
   }
 
   onKeyDownInput = event => {
@@ -54,7 +55,7 @@ class App extends React.Component {
     }
   }
 
-  // apagarMensagem = () =>{
+  // apagarMensagem = () => {
   //   console.log('Apagar mensagem')
   // }
 
@@ -79,14 +80,14 @@ class App extends React.Component {
         <div className="inputs">
           <input className="Usuario"
             placeholder="Usuario"
-            value = {this.state.inputNomeUsuario}
+            value={this.state.inputNomeUsuario}
 
             onChange={this.onChangeInputUsuario}
           />
           <input className="Mensagem"
             placeholder="mensagem"
             onChange={this.onChangeMensagem}
-            value = {this.state.inputMensagemUsuario}
+            value={this.state.inputMensagemUsuario}
           />
 
           <button onClick={this.adicionarMensagem}>Enviar</button>
