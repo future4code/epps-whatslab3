@@ -1,25 +1,48 @@
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  
+  state = {
+    mensagens = [
+      {
+      nomeUsuario:"",
+      mensagemUsuario:""
+    }],
+    inputNomeUsuario ='',
+    inputMensagemUsuario =''
+  }
+
+  adicionarMensagem(){
+    const novaMensagem = {
+      nomeUsuario: this.state.inputNomeUsuario,
+      mensagemUsuario: this.state.inputMensagemUsuario
+    }
+
+    const mensagensNovas = this.state.mensagens
+    mensagensNovas.push(novaMensagem)
+
+    this.setState({mensagens = mensagensNovas})
+
+  }
+
+  
+  
+  render(){
+    const ImprimeMensagemNaTela = this.state.mensagens.map((mensagem) =>{
+      return <div>
+        {mensagem.nomeUsuario}
+        {mensagem.mensagemUsuario}
+      </div>      
+    })
+    return (
+      <div className="App">
+        <button onClick={this.adicionarMensagem}></button>
+      </div>
+    );
+  }
+  
 }
 
 export default App;
