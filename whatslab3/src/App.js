@@ -11,17 +11,23 @@ class App extends React.Component {
     mensagens: [],
     inputNomeUsuario: "",
     InputMensagemUsuario: "",
-    idMensagem: 0,
+    contadorKey:0
+    
   }
   onChangeInputUsuario = event => {
     this.setState({ inputNomeUsuario: event.target.value })
-    console.log(event.target.value);
+    // console.log(event.target.value);
   }
 
   onChangeMensagem = event => {
     this.setState({ inputMensagemUsuario: event.target.value })
-    console.log(event.target.value);
+    // console.log(event.target.value);
   }
+
+  // // somarKey = () =>{
+  //   this.setState({contadorKey: this.state.contadorKey + 1})
+    
+  // }
 
   adicionarMensagem = () => {
     const novaMensagem = {
@@ -34,14 +40,9 @@ class App extends React.Component {
     this.setState({
       mensagens: MensagemNova,
     })
-    console.log(this.state.mensagens);
-
-  
-    // const id = this.state.idMensagem
-    // id +=1
-    // console.log(id)
-    // this.setState({ idMensagem: mensagemId })
+    
     this.limpar()
+    
   }
 
   limpar = () => {
@@ -50,25 +51,25 @@ class App extends React.Component {
 
   onKeyDownInput = event => {
     if (event.key === "Enter") {
-      console.log(`tecla: ${event.key}`);
+      // console.log(`tecla: ${event.key}`);
       this.adicionarMensagem()
     }
   }
 
-  // apagarMensagem = () => {
-  //   console.log('Apagar mensagem')
-  // }
+  apagarMensagem = (numberKey) => {
+    const novoArrayMensagens = this.state.mensagens
+    novoArrayMensagens.splice(numberKey,1)
 
-  //tentar depois
-
-
+    this.setState({mensagens: novoArrayMensagens})
+    console.log('Apagar mensagem', novoArrayMensagens)
+  }
 
   render() {
     const listaMensagem = this.state.mensagens.map((mensagem) => {
+      let numberKey = this.state.mensagens.indexOf(mensagem)
       return (
-        <div id={mensagem.idMensagem} >
-          <p><strong>{mensagem.nomeUsuario}:</strong> {mensagem.mensagemUsuario} {mensagem.idMensagem}</p>
-
+        <div key={numberKey} onDoubleClick={() => this.apagarMensagem(numberKey)}>
+          <p><strong>{mensagem.nomeUsuario}:</strong> {mensagem.mensagemUsuario} {mensagem.idMensagem} - {numberKey}</p>
         </div>
       )
     })
